@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 대표님 1:1 면담 준비 자료 | 개발팀</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0A0E17;
+  --bg2: #111827;
+  --bg3: #1A2236;
+  --card: #151D2E;
+  --card-hover: #1A2540;
+  --border: rgba(255,255,255,0.06);
+  --border-accent: rgba(99,179,237,0.2);
+  --text: #E8ECF4;
+  --text2: #94A3B8;
+  --text3: #64748B;
+  --blue: #63B3ED;
+  --blue-dim: rgba(99,179,237,0.15);
+  --green: #68D391;
+  --green-dim: rgba(104,211,145,0.12);
+  --amber: #F6AD55;
+  --amber-dim: rgba(246,173,85,0.12);
+  --red: #FC8181;
+  --red-dim: rgba(252,129,129,0.1);
+  --purple: #B794F4;
+  --purple-dim: rgba(183,148,244,0.12);
+  --cyan: #76E4F7;
+  --cyan-dim: rgba(118,228,247,0.1);
+  --pink: #F687B3;
+  --pink-dim: rgba(246,135,179,0.1);
+  --grade-a: #68D391;
+  --grade-c: #F6AD55;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-xs: 6px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+.mono { font-family: 'JetBrains Mono', monospace; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width:6px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background:var(--text3); border-radius:3px; }
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 40px 0 32px;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -20%;
+  width: 140%;
+  height: 200%;
+  background: radial-gradient(ellipse at 30% 50%, rgba(99,179,237,0.06) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 50%, rgba(183,148,244,0.04) 0%, transparent 60%);
+  pointer-events: none;
+}
+.container { max-width:1280px; margin:0 auto; padding:0 24px; position:relative; }
+.header-top { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px; }
+.header h1 { font-size:28px; font-weight:700; letter-spacing:-0.5px; }
+.header h1 span { color:var(--blue); }
+.header .subtitle { color:var(--text2); font-size:14px; margin-top:4px; }
+.header-meta { display:flex; gap:20px; flex-wrap:wrap; }
+.meta-chip {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: 12px;
+  color: var(--text2);
+  display:flex; align-items:center; gap:6px;
+}
+.meta-chip .dot { width:6px; height:6px; border-radius:50%; }
+
+/* Nav */
+.nav {
+  display: flex;
+  gap: 4px;
+  padding: 16px 0 0;
+  overflow-x: auto;
+  flex-wrap: wrap;
+}
+.nav-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text2);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all .2s;
+  white-space: nowrap;
+  font-family: inherit;
+}
+.nav-btn:hover { border-color: var(--blue); color: var(--blue); }
+.nav-btn.active { background: var(--blue-dim); border-color: var(--blue); color: var(--blue); }
+
+/* Main */
+main { padding: 24px 0 60px; }
+.section { display:none; }
+.section.active { display:block; }
+.section-title {
+  font-size:20px; font-weight:600; margin-bottom:20px;
+  display:flex; align-items:center; gap:10px;
+}
+.section-title .icon {
+  width:32px; height:32px; border-radius:var(--radius-sm);
+  display:flex; align-items:center; justify-content:center;
+  font-size:16px;
+}
+
+/* Grid */
+.grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
+.grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+@media(max-width:900px) {
+  .grid-2,.grid-3,.grid-4 { grid-template-columns:1fr; }
+}
+.span-2 { grid-column: span 2; }
+@media(max-width:900px) { .span-2 { grid-column: span 1; } }
+
+/* Cards */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  transition: border-color .2s, transform .15s;
+}
+.card:hover { border-color: var(--border-accent); }
+.card-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+.card-title { font-size:14px; font-weight:500; color:var(--text2); }
+.card-value { font-size:32px; font-weight:700; letter-spacing:-1px; }
+.card-value.mono { font-family:'JetBrains Mono',monospace; }
+.card-change { font-size:12px; display:flex; align-items:center; gap:4px; margin-top:4px; }
+
+/* Stat mini */
+.stat-mini {
+  background: var(--bg3);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  text-align: center;
+}
+.stat-mini .label { font-size:11px; color:var(--text3); margin-bottom:4px; text-transform:uppercase; letter-spacing:0.5px; }
+.stat-mini .val { font-size:22px; font-weight:700; font-family:'JetBrains Mono',monospace; }
+
+/* Table */
+.table-wrap { overflow-x:auto; }
+table {
+  width:100%;
+  border-collapse:collapse;
+  font-size:13px;
+}
+th {
+  text-align:left;
+  padding:10px 12px;
+  font-weight:500;
+  color:var(--text3);
+  border-bottom:1px solid var(--border);
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+  white-space:nowrap;
+}
+td {
+  padding:10px 12px;
+  border-bottom:1px solid var(--border);
+  color:var(--text2);
+}
+tr:hover td { background:rgba(255,255,255,0.02); }
+
+/* Badge */
+.badge {
+  display:inline-flex; align-items:center;
+  padding:3px 10px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:500;
+}
+.badge-a { background:var(--green-dim); color:var(--green); }
+.badge-c { background:var(--amber-dim); color:var(--amber); }
+.badge-blue { background:var(--blue-dim); color:var(--blue); }
+.badge-purple { background:var(--purple-dim); color:var(--purple); }
+.badge-red { background:var(--red-dim); color:var(--red); }
+.badge-cyan { background:var(--cyan-dim); color:var(--cyan); }
+.badge-pink { background:var(--pink-dim); color:var(--pink); }
+
+/* Progress bar */
+.progress-bar {
+  width:100%; height:6px;
+  background:var(--bg);
+  border-radius:3px;
+  overflow:hidden;
+  margin-top:8px;
+}
+.progress-fill {
+  height:100%;
+  border-radius:3px;
+  transition: width 1s ease;
+}
+
+/* Score ring */
+.score-ring-wrap { display:flex; align-items:center; gap:16px; }
+.score-ring {
+  width:80px; height:80px;
+  position:relative;
+}
+.score-ring svg { transform:rotate(-90deg); }
+.score-ring .val {
+  position:absolute;
+  inset:0;
+  display:flex; align-items:center; justify-content:center;
+  font-size:20px; font-weight:700;
+  font-family:'JetBrains Mono',monospace;
+}
+.score-detail { font-size:13px; color:var(--text2); }
+.score-detail strong { color:var(--text); }
+
+/* Timeline */
+.timeline { position:relative; padding-left:28px; }
+.timeline::before {
+  content:'';
+  position:absolute;
+  left:8px; top:4px; bottom:4px;
+  width:2px;
+  background: linear-gradient(to bottom, var(--blue), var(--purple), var(--green));
+  border-radius:1px;
+}
+.tl-item { position:relative; padding-bottom:24px; }
+.tl-item:last-child { padding-bottom:0; }
+.tl-dot {
+  position:absolute;
+  left:-24px; top:4px;
+  width:12px; height:12px;
+  border-radius:50%;
+  border:2px solid;
+}
+.tl-quarter { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px; }
+.tl-content {
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  padding:14px 16px;
+}
+.tl-content h4 { font-size:13px; font-weight:600; margin-bottom:6px; }
+.tl-content p { font-size:12px; color:var(--text3); line-height:1.7; }
+.tl-milestone {
+  display:inline-flex; align-items:center; gap:4px;
+  font-size:11px; color:var(--green);
+  margin-top:6px;
+}
+
+/* Comparison bar */
+.compare-row { margin-bottom:16px; }
+.compare-label { font-size:12px; color:var(--text2); margin-bottom:6px; display:flex; justify-content:space-between; }
+.compare-bar {
+  display:flex; height:28px; border-radius:var(--radius-xs); overflow:hidden; gap:2px;
+}
+.compare-bar .seg {
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:600;
+  transition: width 1s ease;
+}
+
+/* Risk card */
+.risk-card {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:16px;
+  border-left:3px solid;
+}
+
+/* Glow accent */
+.glow-blue { box-shadow: 0 0 0 1px rgba(99,179,237,0.15), 0 4px 20px rgba(99,179,237,0.08); }
+.glow-green { box-shadow: 0 0 0 1px rgba(104,211,145,0.15), 0 4px 20px rgba(104,211,145,0.08); }
+.glow-amber { box-shadow: 0 0 0 1px rgba(246,173,85,0.15), 0 4px 20px rgba(246,173,85,0.08); }
+
+/* Impact highlight */
+.impact-card {
+  background: linear-gradient(135deg, var(--card) 0%, rgba(99,179,237,0.05) 100%);
+  border:1px solid var(--border-accent);
+  border-radius:var(--radius);
+  padding:20px;
+}
+.impact-number { font-size:36px; font-weight:900; font-family:'JetBrains Mono',monospace; }
+.impact-label { font-size:12px; color:var(--text3); margin-top:2px; }
+.impact-desc { font-size:13px; color:var(--text2); margin-top:8px; line-height:1.7; }
+
+/* Subsection */
+.sub-title {
+  font-size:15px; font-weight:600; margin:28px 0 14px;
+  padding-left:12px;
+  border-left:3px solid var(--blue);
+  display:flex; align-items:center; gap:8px;
+}
+
+/* Print */
+@media print {
+  body { background:#fff; color:#111; }
+  .nav, .header { break-after:avoid; }
+  .section { display:block !important; page-break-before:always; }
+  .card { border-color:#ddd; }
+}
+
+/* Animations */
+@keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+.card, .stat-mini, .impact-card, .risk-card, .tl-item {
+  animation: fadeUp .4s ease both;
+}
+.grid-4 > *:nth-child(1) { animation-delay:.05s; }
+.grid-4 > *:nth-child(2) { animation-delay:.1s; }
+.grid-4 > *:nth-child(3) { animation-delay:.15s; }
+.grid-4 > *:nth-child(4) { animation-delay:.2s; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="container">
+    <div class="header-top">
+      <div>
+        <h1>2026 대표님 1:1 면담 <span>준비 자료</span></h1>
+        <p class="subtitle">개발팀 · 기존 구성원 평가 대상자 · 2025 성과 리뷰 및 2026 실행 계획</p>
+      </div>
+      <div class="header-meta">
+        <div class="meta-chip"><div class="dot" style="background:var(--green)"></div>정량 11개 과제</div>
+        <div class="meta-chip"><div class="dot" style="background:var(--blue)"></div>정성 3개 과제</div>
+        <div class="meta-chip"><div class="dot" style="background:var(--purple)"></div>자기평가 6.83/7</div>
+      </div>
+    </div>
+    <div class="nav">
+      <button class="nav-btn active" onclick="showSection('overview')">종합 Overview</button>
+      <button class="nav-btn" onclick="showSection('performance')">정량 평가</button>
+      <button class="nav-btn" onclick="showSection('qualitative')">정성 평가 & 기여</button>
+      <button class="nav-btn" onclick="showSection('selfeval')">자기평가 분석</button>
+      <button class="nav-btn" onclick="showSection('plan2026')">2026 실행 계획</button>
+      <button class="nav-btn" onclick="showSection('ai-project')">AI 프로젝트</button>
+      <button class="nav-btn" onclick="showSection('risk')">리스크 & 지원</button>
+    </div>
+  </div>
+</div>
+
+<main>
+<div class="container">
+
+<!-- ============ OVERVIEW ============ -->
+<div id="overview" class="section active">
+  <div class="section-title">
+    <div class="icon" style="background:var(--blue-dim);color:var(--blue);">📊</div>
+    2025 성과 종합 Overview
+  </div>
+
+  <div class="grid-4" style="margin-bottom:20px">
+    <div class="stat-mini">
+      <div class="label">정량 과제 달성율</div>
+      <div class="val" style="color:var(--green)">98%</div>
+    </div>
+    <div class="stat-mini">
+      <div class="label">A등급 과제</div>
+      <div class="val" style="color:var(--green)">10<span style="font-size:14px;color:var(--text3)">/11</span></div>
+    </div>
+    <div class="stat-mini">
+      <div class="label">정성 추가 기여</div>
+      <div class="val" style="color:var(--blue)">3건</div>
+    </div>
+    <div class="stat-mini">
+      <div class="label">자기평가 총평균</div>
+      <div class="val" style="color:var(--purple)">6.83<span style="font-size:14px;color:var(--text3)">/7</span></div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="impact-card glow-green">
+      <div class="impact-number" style="color:var(--green)">97%</div>
+      <div class="impact-label">URL 구매 상품등록 성공률</div>
+      <div class="impact-desc">외주업체 작업 시 <strong style="color:var(--amber)">77%</strong>에 불과했던 성공률을 직접 추가 개발하여 <strong style="color:var(--green)">97%</strong>까지 끌어올림. <strong style="color:var(--text)">+20%p 개선</strong>으로 구매대행 서비스 신뢰도 대폭 향상.</div>
+    </div>
+    <div class="impact-card glow-blue">
+      <div class="impact-number" style="color:var(--blue)">0건</div>
+      <div class="impact-label">모바일상품권 보안 이슈</div>
+      <div class="impact-desc">모바일상품권 서비스 보안 개선(알림, 발송 조건, 보안 로직) 작업 완료 후 <strong style="color:var(--text)">보안 사고 0건</strong> 달성. 고객사 민감 데이터를 다루는 서비스에서 무결점 운영.</div>
+    </div>
+  </div>
+
+  <div class="sub-title" style="margin-top:28px">핵심 기여 요약</div>
+  <div class="grid-3" style="margin-bottom:0">
+    <div class="card">
+      <div style="font-size:24px;margin-bottom:8px">🛒</div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:6px">비즈니스 임팩트</div>
+      <div style="font-size:12px;color:var(--text3);line-height:1.8">
+        · 업무마켓 핵심기능 10건 정시 완료<br>
+        · 컴퓨존 크롤링 자동화 → 운영 수작업 제거<br>
+        · 넥스트칩/세아 연동 → 신규 고객사 확보<br>
+        · 모바일상품권 보안개선 → <strong style="color:var(--green)">보안사고 0건</strong>
+      </div>
+    </div>
+    <div class="card">
+      <div style="font-size:24px;margin-bottom:8px">⚡</div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:6px">운영 효율화</div>
+      <div style="font-size:12px;color:var(--text3);line-height:1.8">
+        · URL구매 성공률 77%→<strong style="color:var(--green)">97%</strong> (+20%p)<br>
+        · 쿠팡 장바구니 자동화 → 실무자 부담 감소<br>
+        · 공통 API 모듈 → 신규 연동 공수 50%↓
+      </div>
+    </div>
+    <div class="card">
+      <div style="font-size:24px;margin-bottom:8px">🤝</div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:6px">조직 기여</div>
+      <div style="font-size:12px;color:var(--text3);line-height:1.8">
+        · 자기평가 전 항목 6~7점 (상위수준)<br>
+        · 팀원 기술 공유 및 문제해결 주도<br>
+        · 성실 근태 + 책임감 → 팀 신뢰 구축
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PERFORMANCE ============ -->
+<div id="performance" class="section">
+  <div class="section-title">
+    <div class="icon" style="background:var(--green-dim);color:var(--green);">✅</div>
+    정량 평가: 주요 성과 달성 내역
+  </div>
+
+  <div class="grid-4" style="margin-bottom:20px">
+    <div class="stat-mini">
+      <div class="label">전체 과제</div>
+      <div class="val">11건</div>
+    </div>
+    <div class="stat-mini">
+      <div class="label">완료 (A등급)</div>
+      <div class="val" style="color:var(--green)">10건</div>
+    </div>
+    <div class="stat-mini">
+      <div class="label">진행중 (C등급)</div>
+      <div class="val" style="color:var(--amber)">1건</div>
+    </div>
+    <div class="stat-mini">
+      <div class="label">종합 달성율</div>
+      <div class="val" style="color:var(--green)">98%</div>
+    </div>
+  </div>
+
+  <div class="card" style="padding:0;overflow:hidden">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:40px">No</th>
+            <th>합의 분야</th>
+            <th>결과</th>
+            <th style="width:70px">달성율</th>
+            <th style="width:60px">등급</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="mono">01</td><td><span class="badge badge-blue">업무마켓</span></td><td>모바일상품권 서비스 개선 (보안, 알림, 발송 조건)</td><td class="mono" style="color:var(--green)">100%</td><td><span class="badge badge-a">A</span></td></tr>
+          <tr><td class="mono">02</td><td><span class="badge badge-blue">업무마켓</span></td><td>전용몰 대시보드</td><td class="mono" style="color:var(--green)">100%</td><td><span class="badge badge-a">A</span></td></tr>
+          <tr><td class="mono">03</td><td><span class="badge badge-blue">업무마켓</span></td><td>넥스트칩 인터페이스 연동 (외부결재, 구매대행, 지불요청)</td><td class="mono" style="color:var(--green)">100%</td><td><span class="badge badge-a">A</span></td></tr>
+          <tr><td class="mono">04</td><td><span class="badge badge-blue">업무마켓</span></td><td>세아홀딩스 구글 SSO 연동</td><td class="mono" style="color:var(--green)">100%</td><td><span class="badge badge-a">A</span></td></tr>
+          <tr><td class="mono">05</td><td><span class="badge badge-purple">마켓&어드민</span></td><td>어드민 기획전 관리 및 업무마켓 기획전 페이지</td><td class="mono" style="color:var(--green)">100%</td><td><span class="badge badge-a">A</span></td></tr>
+          <tr><td class="mono">06</td><td><span class="badge badge-blue">업무마켓</span></td><td>컴퓨존 크롤링 및 상품가격 자동 업데이트</td><td class="mono" style="color:var(--green)">100%</td><td><span class="badge badge-a">A</span></td></tr>
+          <tr><td class="mono">07</td><td><span class="badge badge-blue">업무마켓</span></td><td>SAP ARIBA 회원가입 및 인증</td><td class="mono" style="color:var(--green)">100%</td><td><span class="badge badge-a">A</span></td></tr>
+          <tr><td class="mono">08</td><td><span class="badge badge-blue">업무마켓</span></td><td>NICE DNB 제거</td><td class="mono" style="color:var(--green)">100%</td><td><span class="badge badge-a">A</span></td></tr>
+          <tr><td class="mono">09</td><td><span class="badge badge-blue">업무마켓</span></td><td>구글챗 알림 공통</td><td class="mono" style="color:var(--green)">100%</td><td><span class="badge badge-a">A</span></td></tr>
+          <tr><td class="mono">10</td><td><span class="badge badge-cyan">어드민</span></td><td>출하지시서 관리</td><td class="mono" style="color:var(--green)">100%</td><td><span class="badge badge-a">A</span></td></tr>
+          <tr><td class="mono">11</td><td><span class="badge badge-blue">업무마켓</span></td><td>출장서비스 (비즈플레이, 트래포트 결제 작업 대기 중)</td><td class="mono" style="color:var(--amber)">80%</td><td><span class="badge badge-c">C</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sub-title">미완료 과제 분석: 출장서비스</div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title" style="margin-bottom:12px">원인 분석</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.9">
+        <div style="display:flex;gap:8px;align-items:baseline;margin-bottom:4px"><span style="color:var(--amber)">①</span> 외부 업체(비즈플레이, 트래포트) 결제 연동 일정이 당사 통제 밖</div>
+        <div style="display:flex;gap:8px;align-items:baseline;margin-bottom:4px"><span style="color:var(--amber)">②</span> 초기 일정 수립 시 외부 변수 버퍼 설정 부족</div>
+        <div style="display:flex;gap:8px;align-items:baseline"><span style="color:var(--amber)">③</span> 외부 업체와의 커뮤니케이션 주기 미흡</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title" style="margin-bottom:12px">개선 방향</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.9">
+        <div style="display:flex;gap:8px;align-items:baseline;margin-bottom:4px"><span style="color:var(--green)">①</span> 외부 연동 과제 시 리스크 버퍼(+2주) 반영</div>
+        <div style="display:flex;gap:8px;align-items:baseline;margin-bottom:4px"><span style="color:var(--green)">②</span> 주간 단위 외부 업체 진행상황 체크 도입</div>
+        <div style="display:flex;gap:8px;align-items:baseline"><span style="color:var(--green)">③</span> Plan B 시나리오 사전 수립 후 착수</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ QUALITATIVE ============ -->
+<div id="qualitative" class="section">
+  <div class="section-title">
+    <div class="icon" style="background:var(--purple-dim);color:var(--purple);">💡</div>
+    정성 평가 & 회사 기여도
+  </div>
+
+  <div style="font-size:13px;color:var(--text3);margin-bottom:20px;padding:12px 16px;background:var(--bg3);border-radius:var(--radius-sm);border-left:3px solid var(--amber)">
+    ⚠️ 대표님 강조: "노력"이 아닌 <strong style="color:var(--text)">"결과"</strong> 중심으로 이야기 나눌 예정
+  </div>
+
+  <!-- URL 구매대행 개선 -->
+  <div class="sub-title" style="border-color:var(--green)">🎯 핵심 성과 ① URL 구매대행 성공률 개선</div>
+  <div class="card glow-green" style="margin-bottom:20px">
+    <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+      <div>
+        <div class="compare-label">
+          <span>상품등록 성공률 비교</span>
+        </div>
+        <div class="compare-bar" style="width:100%;min-width:280px;max-width:500px">
+          <div class="seg" style="width:77%;background:var(--amber);color:#000;border-radius:var(--radius-xs) 0 0 var(--radius-xs)">외주업체 77%</div>
+          <div class="seg" style="width:23%;background:var(--green);color:#000;border-radius:0 var(--radius-xs) var(--radius-xs) 0">+20%p</div>
+        </div>
+        <div style="display:flex;justify-content:flex-end;margin-top:4px">
+          <span style="font-size:11px;color:var(--green)">내가 추가 작업 후 → 97% 달성</span>
+        </div>
+      </div>
+      <div style="flex:1;min-width:200px">
+        <div style="font-size:13px;color:var(--text2);line-height:1.8">
+          <strong style="color:var(--text)">작업 내용:</strong> 쿠팡 크롤링 속도 최적화 및 네이버 전체 옵션 상품 크롤링·등록 개발<br>
+          <strong style="color:var(--text)">결과:</strong> 외주 대비 성공률 20%p 향상으로 서비스 품질 및 매출 직결
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 모바일상품권 보안 -->
+  <div class="sub-title" style="border-color:var(--blue)">🔒 핵심 성과 ② 모바일상품권 보안 무결점 운영</div>
+  <div class="card glow-blue" style="margin-bottom:20px">
+    <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+      <div style="text-align:center;min-width:100px">
+        <div style="font-size:48px;font-weight:900;font-family:'JetBrains Mono',monospace;color:var(--blue)">0</div>
+        <div style="font-size:12px;color:var(--text3)">보안 사고 건수</div>
+      </div>
+      <div style="flex:1;min-width:200px">
+        <div style="font-size:13px;color:var(--text2);line-height:1.8">
+          <strong style="color:var(--text)">작업 내용:</strong> 보안 로직 강화, 알림 시스템 개선, 발송 조건 정비<br>
+          <strong style="color:var(--text)">결과:</strong> 고객사 민감 데이터 처리 서비스에서 연간 보안 이슈 <strong style="color:var(--green)">0건</strong> 달성<br>
+          <strong style="color:var(--text)">영향:</strong> 고객사 신뢰 확보 및 서비스 안정성 입증
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 쿠팡 장바구니 -->
+  <div class="sub-title" style="border-color:var(--purple)">⚡ 핵심 성과 ③ 쿠팡 장바구니 자동화 & API 모듈</div>
+  <div class="grid-2">
+    <div class="card">
+      <div style="font-size:13px;font-weight:600;margin-bottom:8px;color:var(--text)">쿠팡 장바구니 자동화 확장프로그램</div>
+      <div style="font-size:12px;color:var(--text3);line-height:1.8">
+        <strong>사유:</strong> URL 구매대행 물량 급증 → 실무자 수동 작업 과부하<br>
+        <strong>결과:</strong> 장바구니 담기 공정 자동화 → 처리 속도 향상, 피로도 감소
+      </div>
+    </div>
+    <div class="card">
+      <div style="font-size:13px;font-weight:600;margin-bottom:8px;color:var(--text)">공통 외부 API 연동 규격 개발</div>
+      <div style="font-size:12px;color:var(--text3);line-height:1.8">
+        <strong>사유:</strong> 타사 서비스 연동 시 반복 작업 → 표준화 필요<br>
+        <strong>결과:</strong> 통합 연동 모듈로 신규 연동 공수 50% 이상 절감
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SELF EVAL ============ -->
+<div id="selfeval" class="section">
+  <div class="section-title">
+    <div class="icon" style="background:var(--purple-dim);color:var(--purple);">📋</div>
+    자기평가 분석 (23개 항목, 7점 만점)
+  </div>
+
+  <div class="grid-2" style="margin-bottom:20px">
+    <div class="card" style="display:flex;align-items:center;gap:24px">
+      <div class="score-ring">
+        <svg width="80" height="80" viewBox="0 0 80 80">
+          <circle cx="40" cy="40" r="34" fill="none" stroke="var(--bg)" stroke-width="6"/>
+          <circle cx="40" cy="40" r="34" fill="none" stroke="var(--purple)" stroke-width="6"
+            stroke-dasharray="213.6" stroke-dashoffset="18.3" stroke-linecap="round"/>
+        </svg>
+        <div class="val" style="color:var(--purple)">6.83</div>
+      </div>
+      <div class="score-detail">
+        <div><strong>종합 평균: 6.83 / 7.0</strong></div>
+        <div style="margin-top:4px">전 항목 상위 수준 (97.6%)</div>
+        <div style="margin-top:2px;font-size:11px;color:var(--text3)">23개 문항 · 6개 카테고리</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title" style="margin-bottom:12px">카테고리별 점수</div>
+      <div id="category-bars"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title" style="margin-bottom:12px">주요 평가 근거 (발췌)</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>카테고리</th><th>점수</th><th>핵심 근거</th></tr></thead>
+        <tbody>
+          <tr><td><span class="badge badge-a">근태</span></td><td class="mono" style="color:var(--green)">7.0</td><td style="color:var(--text2)">정시 출근 기본, 불가피한 상황 외 성실하게 출근 시간 준수</td></tr>
+          <tr><td><span class="badge badge-blue">협업</span></td><td class="mono" style="color:var(--green)">7.0</td><td style="color:var(--text2)">일정 차질 시 미리 공유·조율, 팀원 문제에 실질적 도움 제공</td></tr>
+          <tr><td><span class="badge badge-purple">역량</span></td><td class="mono" style="color:var(--blue)">6.7</td><td style="color:var(--text2)">실무 지식 충분, 지식 공유로 팀 효율 향상에 기여</td></tr>
+          <tr><td><span class="badge badge-pink">열정</span></td><td class="mono" style="color:var(--blue)">6.7</td><td style="color:var(--text2)">자기 성장에 관심, 능동적 개선 제안, 어려운 과제도 해결 의지</td></tr>
+          <tr><td><span class="badge badge-cyan">성과</span></td><td class="mono" style="color:var(--green)">7.0</td><td style="color:var(--text2)">역할 충실 수행, 기한 준수, 결과물 자체 검토로 완성도 향상</td></tr>
+          <tr><td><span class="badge badge-a">태도</span></td><td class="mono" style="color:var(--green)">7.0</td><td style="color:var(--text2)">문제 해결 중심, 솔직한 소통, 책임 인정 및 개선 실행</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 2026 PLAN ============ -->
+<div id="plan2026" class="section">
+  <div class="section-title">
+    <div class="icon" style="background:var(--blue-dim);color:var(--blue);">🎯</div>
+    2026년 실행 계획
+  </div>
+
+  <div class="sub-title" style="border-color:var(--green)">본업: 개발 업무 목표</div>
+  <div class="grid-3" style="margin-bottom:24px">
+    <div class="card">
+      <div style="color:var(--green);font-size:11px;font-weight:600;margin-bottom:8px">목표 ①</div>
+      <div style="font-size:14px;font-weight:600;margin-bottom:6px">분기별 주요 과제 100% 정시 완료</div>
+      <div style="font-size:12px;color:var(--text3)">업무마켓/어드민 신규 기능 개발 및 유지보수</div>
+    </div>
+    <div class="card">
+      <div style="color:var(--green);font-size:11px;font-weight:600;margin-bottom:8px">목표 ②</div>
+      <div style="font-size:14px;font-weight:600;margin-bottom:6px">출장서비스 Q1 내 마무리</div>
+      <div style="font-size:12px;color:var(--text3)">2025년 미완료 과제 완료</div>
+    </div>
+    <div class="card">
+      <div style="color:var(--green);font-size:11px;font-weight:600;margin-bottom:8px">목표 ③</div>
+      <div style="font-size:14px;font-weight:600;margin-bottom:6px">외부 연동 과제 연간 3건+</div>
+      <div style="font-size:12px;color:var(--text3)">안정적 수행 및 API 표준화 기여</div>
+    </div>
+  </div>
+
+  <div class="sub-title" style="border-color:var(--purple)">BSM SaaS 전환 기여 (추가 목표)</div>
+  <div class="grid-2" style="margin-bottom:24px">
+    <div class="card" style="border-left:3px solid var(--purple)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div style="font-size:14px;font-weight:600">멀티테넌트 아키텍처 이해 & 준비</div>
+        <span class="badge badge-purple">SaaS 핵심</span>
+      </div>
+      <div style="font-size:12px;color:var(--text3);line-height:1.8">SaaS 전환의 기술적 전제조건인 멀티테넌트 구조 학습 및 기존 코드베이스 분석. 고객사별 데이터 분리 설계 참여.</div>
+    </div>
+    <div class="card" style="border-left:3px solid var(--blue)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div style="font-size:14px;font-weight:600">대시보드 & 지출 분석 기능 고도화</div>
+        <span class="badge badge-blue">BSM 핵심</span>
+      </div>
+      <div style="font-size:12px;color:var(--text3);line-height:1.8">2025년 전용몰 대시보드 경험을 살려 부서별/카테고리별 지출 분석, 예산 대비 실적, 이상 지출 알림 기능 확장.</div>
+    </div>
+  </div>
+
+  <div class="sub-title" style="border-color:var(--blue)">분기별 로드맵</div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot" style="border-color:var(--blue);background:var(--blue-dim)"></div>
+      <div class="tl-quarter" style="color:var(--blue)">Q1 (1~3월)</div>
+      <div class="tl-content">
+        <h4>출장서비스 완료 + 상반기 과제 착수</h4>
+        <p>출장서비스 개발 마무리, 상반기 신규 과제 기획 및 착수. Claude Code 강의 완료, RAG 기초 개념 학습 시작.</p>
+        <div class="tl-milestone">✓ 출장서비스 배포 완료 · ✓ RAG 데모 구현</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot" style="border-color:var(--purple);background:var(--purple-dim)"></div>
+      <div class="tl-quarter" style="color:var(--purple)">Q2 (4~6월)</div>
+      <div class="tl-content">
+        <h4>신규 고객사 연동 + FAQ 챗봇 MVP</h4>
+        <p>고객사 연동 과제 2건 이상 완료. 사내 FAQ 챗봇 MVP 개발 (50개 FAQ 대응, Slack 연동 프로토타입).</p>
+        <div class="tl-milestone">✓ 연동 2건 완료 · ✓ 챗봇 MVP 테스트</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot" style="border-color:var(--green);background:var(--green-dim)"></div>
+      <div class="tl-quarter" style="color:var(--green)">Q3 (7~9월)</div>
+      <div class="tl-content">
+        <h4>챗봇 전사 배포 + 위키 MVP 개발</h4>
+        <p>사내 챗봇 v1.0 전 직원 배포. 회사 위키 MVP 개발 착수 (100개 문서 인덱싱). 기존 서비스 고도화.</p>
+        <div class="tl-milestone">✓ 챗봇 v1.0 배포 · ✓ 사용율 60%+</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot" style="border-color:var(--amber);background:var(--amber-dim)"></div>
+      <div class="tl-quarter" style="color:var(--amber)">Q4 (10~12월)</div>
+      <div class="tl-content">
+        <h4>위키 배포 + 성과 보고</h4>
+        <p>회사 위키 v1.0 전사 배포. 성과 보고서 작성 (사용량, 응답 정확도, 시간절감 수치). 2027년 확장 계획 수립.</p>
+        <div class="tl-milestone">✓ 위키 v1.0 배포 · ✓ 응답 정확도 85%+ · ✓ 성과 보고</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ AI PROJECT ============ -->
+<div id="ai-project" class="section">
+  <div class="section-title">
+    <div class="icon" style="background:var(--cyan-dim);color:var(--cyan);">🤖</div>
+    AI 프로젝트: 사내 챗봇 & 회사 위키
+  </div>
+
+  <div class="grid-2" style="margin-bottom:20px">
+    <div class="impact-card" style="background:linear-gradient(135deg, var(--card) 0%, rgba(118,228,247,0.05) 100%);border-color:rgba(118,228,247,0.2)">
+      <div style="font-size:13px;font-weight:600;color:var(--cyan);margin-bottom:12px">🗨️ 사내 AI 챗봇</div>
+      <div style="font-size:12px;color:var(--text2);line-height:1.8">
+        사내 규정/프로세스/FAQ 자동 응답 시스템<br>
+        <span style="color:var(--text3)">→ 반복 질문 응답 시간 <strong style="color:var(--green)">80% 절감</strong></span>
+      </div>
+    </div>
+    <div class="impact-card" style="background:linear-gradient(135deg, var(--card) 0%, rgba(183,148,244,0.05) 100%);border-color:rgba(183,148,244,0.2)">
+      <div style="font-size:13px;font-weight:600;color:var(--purple);margin-bottom:12px">📚 회사 위키</div>
+      <div style="font-size:12px;color:var(--text2);line-height:1.8">
+        사내 지식 통합 검색 플랫폼 (RAG 기반)<br>
+        <span style="color:var(--text3)">→ 검색 시간 평균 5분 → <strong style="color:var(--green)">30초</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-title" style="border-color:var(--cyan)">현재 상태 & 학습 로드맵</div>
+  <div style="font-size:12px;color:var(--text3);margin-bottom:12px;padding:10px 14px;background:var(--bg3);border-radius:var(--radius-sm)">
+    현재: Claude Code 강의 수강 중 | RAG 개념 미습득 → 단계별 실행 가능한 학습 계획 수립
+  </div>
+
+  <div class="card" style="padding:0;overflow:hidden">
+    <table>
+      <thead><tr><th>단계</th><th>학습 내용</th><th>추천 리소스</th><th>기간</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="badge badge-blue">Step 1</span></td>
+          <td style="color:var(--text)">Claude Code 강의 완료 + LLM API 실습</td>
+          <td>현재 수강 중 강의, Anthropic 공식 문서</td>
+          <td class="mono" style="color:var(--blue)">~4월</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-purple">Step 2</span></td>
+          <td style="color:var(--text)">RAG 기초 (Embedding, Vector DB, 파이프라인)</td>
+          <td>테디노트 "RAG from Scratch", LangChain 튜토리얼</td>
+          <td class="mono" style="color:var(--purple)">2주</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-a">Step 3</span></td>
+          <td style="color:var(--text)">RAG 실습 (PDF → 챗봇, LangChain + Chroma)</td>
+          <td>LangChain Docs, ChromaDB 공식 문서</td>
+          <td class="mono" style="color:var(--green)">3주</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-cyan">Step 4</span></td>
+          <td style="color:var(--text)">Chunking 전략 & 응답 품질 최적화</td>
+          <td>Pinecone 학습 자료, LlamaIndex Docs</td>
+          <td class="mono" style="color:var(--cyan)">2주</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-pink">Step 5</span></td>
+          <td style="color:var(--text)">챗봇 UI (React/Next.js) + Slack 연동</td>
+          <td>Next.js 공식 문서, Vercel AI SDK</td>
+          <td class="mono" style="color:var(--pink)">3주</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sub-title" style="border-color:var(--green)">핵심 마일스톤 & 측정 지표</div>
+  <div class="grid-4">
+    <div class="stat-mini" style="border-top:2px solid var(--blue)">
+      <div class="label">3월 말</div>
+      <div style="font-size:12px;color:var(--text2);margin-top:4px">RAG 데모 구현</div>
+    </div>
+    <div class="stat-mini" style="border-top:2px solid var(--purple)">
+      <div class="label">6월 말</div>
+      <div style="font-size:12px;color:var(--text2);margin-top:4px">FAQ 챗봇 MVP<br><span style="color:var(--green)">응답율 90%+</span></div>
+    </div>
+    <div class="stat-mini" style="border-top:2px solid var(--green)">
+      <div class="label">9월 말</div>
+      <div style="font-size:12px;color:var(--text2);margin-top:4px">챗봇 전사 배포<br><span style="color:var(--green)">사용율 60%+</span></div>
+    </div>
+    <div class="stat-mini" style="border-top:2px solid var(--amber)">
+      <div class="label">12월 말</div>
+      <div style="font-size:12px;color:var(--text2);margin-top:4px">위키 v1.0 배포<br><span style="color:var(--green)">정확도 85%+</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ RISK ============ -->
+<div id="risk" class="section">
+  <div class="section-title">
+    <div class="icon" style="background:var(--red-dim);color:var(--red);">⚠️</div>
+    리스크 & 필요 지원
+  </div>
+
+  <div style="display:grid;gap:14px">
+    <div class="risk-card" style="border-left-color:var(--amber)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div style="font-size:14px;font-weight:600">본업 + AI 프로젝트 병행 시 일정 충돌</div>
+        <span class="badge badge-c">중간 위험</span>
+      </div>
+      <div class="grid-2" style="gap:12px">
+        <div style="font-size:12px;color:var(--text3);line-height:1.7">
+          <div style="color:var(--text2);font-weight:500;margin-bottom:4px">대응 방안</div>
+          주 1회 고정 AI 학습/개발 시간 확보 (예: 매주 금요일 오후)
+        </div>
+        <div style="font-size:12px;color:var(--text3);line-height:1.7">
+          <div style="color:var(--blue);font-weight:500;margin-bottom:4px">필요 지원</div>
+          팀장님 승인 하에 주간 반나절 AI 프로젝트 업무 시간 확보
+        </div>
+      </div>
+    </div>
+
+    <div class="risk-card" style="border-left-color:var(--amber)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div style="font-size:14px;font-weight:600">RAG 학습 경험 부족 → 기술적 병목</div>
+        <span class="badge badge-c">중간 위험</span>
+      </div>
+      <div class="grid-2" style="gap:12px">
+        <div style="font-size:12px;color:var(--text3);line-height:1.7">
+          <div style="color:var(--text2);font-weight:500;margin-bottom:4px">대응 방안</div>
+          Step-by-step 학습 + 외부 커뮤니티/멘토 활용
+        </div>
+        <div style="font-size:12px;color:var(--text3);line-height:1.7">
+          <div style="color:var(--blue);font-weight:500;margin-bottom:4px">필요 지원</div>
+          AI/RAG 관련 외부 교육 수강 지원 (예산)
+        </div>
+      </div>
+    </div>
+
+    <div class="risk-card" style="border-left-color:var(--blue)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div style="font-size:14px;font-weight:600">LLM API 비용 발생</div>
+        <span class="badge badge-blue">낮은 위험</span>
+      </div>
+      <div class="grid-2" style="gap:12px">
+        <div style="font-size:12px;color:var(--text3);line-height:1.7">
+          <div style="color:var(--text2);font-weight:500;margin-bottom:4px">대응 방안</div>
+          MVP 단계에서 비용 측정 후 보고, 무료 티어 우선 활용
+        </div>
+        <div style="font-size:12px;color:var(--text3);line-height:1.7">
+          <div style="color:var(--blue);font-weight:500;margin-bottom:4px">필요 지원</div>
+          API 비용 예산 승인 (월 $50~100 예상)
+        </div>
+      </div>
+    </div>
+
+    <div class="risk-card" style="border-left-color:var(--purple)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div style="font-size:14px;font-weight:600">사내 문서 보안 이슈</div>
+        <span class="badge badge-purple">관리 필요</span>
+      </div>
+      <div class="grid-2" style="gap:12px">
+        <div style="font-size:12px;color:var(--text3);line-height:1.7">
+          <div style="color:var(--text2);font-weight:500;margin-bottom:4px">대응 방안</div>
+          온프레미스 배포 우선 검토 + 권한 관리 설계
+        </div>
+        <div style="font-size:12px;color:var(--text3);line-height:1.7">
+          <div style="color:var(--blue);font-weight:500;margin-bottom:4px">필요 지원</div>
+          보안팀 협의 및 데이터 처리 가이드라인
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-title" style="margin-top:32px;border-color:var(--green)">마무리</div>
+  <div class="card" style="background:linear-gradient(135deg, var(--card) 0%, rgba(104,211,145,0.04) 100%);border-color:rgba(104,211,145,0.15)">
+    <div style="font-size:14px;color:var(--text);line-height:2">
+      2025년에는 <strong>11개 과제 중 10개를 A등급 완료</strong>하고, URL 구매 성공률을 <strong style="color:var(--green)">77%→97%</strong>로 끌어올리며,
+      모바일상품권 서비스에서 <strong style="color:var(--green)">보안 사고 0건</strong>을 달성했습니다.<br>
+      2026년에는 <strong>본업 100% 완료</strong>를 유지하면서, <strong style="color:var(--cyan)">AI 챗봇·위키</strong>와 <strong style="color:var(--purple)">BSM SaaS 전환 기여</strong>를 통해 회사 성장에 실질적 결과를 만들어내겠습니다.
+    </div>
+  </div>
+</div>
+
+</div>
+</main>
+
+<script>
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({top: document.querySelector('.header').offsetHeight, behavior:'smooth'});
+}
+
+// Category bars
+const cats = [
+  {name:'근태', score:7.0, color:'var(--green)'},
+  {name:'협업', score:7.0, color:'var(--green)'},
+  {name:'성과', score:7.0, color:'var(--green)'},
+  {name:'태도', score:7.0, color:'var(--green)'},
+  {name:'역량', score:6.7, color:'var(--blue)'},
+  {name:'열정', score:6.7, color:'var(--blue)'},
+];
+const catWrap = document.getElementById('category-bars');
+cats.forEach(c => {
+  const pct = (c.score/7*100).toFixed(0);
+  catWrap.innerHTML += `
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+      <span style="width:32px;font-size:12px;color:var(--text3)">${c.name}</span>
+      <div style="flex:1;height:8px;background:var(--bg);border-radius:4px;overflow:hidden">
+        <div style="width:${pct}%;height:100%;background:${c.color};border-radius:4px;transition:width 1s"></div>
+      </div>
+      <span style="width:40px;text-align:right;font-size:12px;font-family:'JetBrains Mono',monospace;color:${c.color}">${c.score}</span>
+    </div>`;
+});
+</script>
+</body>
+</html>
